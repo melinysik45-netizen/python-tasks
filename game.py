@@ -61,6 +61,7 @@ print("2 - идти вперёд")
 print("3 - отдохнуть")
 print("4 - прислушаться")
 print("5 - зажечь факел")
+print("6 - тренировка")
 
 print()
 
@@ -95,6 +96,36 @@ match choice:
             print("Ты зажигаешь факел. Стены катакомб оживают неровным светом, полки с костями отбрасывают тени.")
         else:
             print("Сил недостаточно, чтобы даже высечь искру.")
+
+    case "6":
+        cost = 4
+        if stamina < 4:
+            print("Ты очень устал для тренировки")
+        else:
+            stamina -= cost
+            strikes = 6
+            total_damage = 0
+            crit_count = 0
+            print("Ты подходишь к тренировочному чучелу из старых досок.")
+            print("Оно стояло тут с тех пор, как сюда кто-то спускался")
+            print()
+
+        print(f"Наносите {strikes} ударов.")
+        for i in range(1, strikes + 1):
+            if i % 3 == 0:
+                hit_damage = crit_damage
+            else:
+                hit_damage = damage
+            if i % 3 == 0:
+                print(f"Удар {i}: {hit_damage:.1f} — критический!")
+            else:
+                print(f"Удар {i}: {hit_damage:.1f}")
+            total_damage += hit_damage
+            if i % 3 == 0:
+                crit_count += 1
+
+        for i in range(1, strikes + 1):
+            print(f"Удар {i}: {damage:.1f} урона")
 
     case _:
         print("Такого действия нет.")
